@@ -12,9 +12,7 @@
 */
 
 class Model {
-    constructor () {
-        super()
-    
+    constructor () {    
         //variables
         this.keys = [];
         this.circlePanels = [];

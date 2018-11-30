@@ -12,6 +12,20 @@
 *
 */
 
-function doSomething() {
-
+//********* event listener callbacks *********//
+function clickCircle() {
+    console.log("clicked circle")
 }
+
+function hoverCircle() {
+    console.log("hovered circle")
+}
+
+function clickKeyboard() {
+    console.log("clicked keyboard")
+}
+
+function hoverKeyboard() {
+    console.log("hovered keyboard")
+}
+
