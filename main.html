@@ -12,26 +12,51 @@
 
 //Global var
 
-//make scene graph
-function makeSceneGraph () {
-    myScene = new Scene()
-    scene.add (myScene)
-    lights = new Lights()
+//add event listeners
+function addEventListeners() {
+    //onclick circle
+    document.getElementById("circle").addEventListener("click", function(){
+        console.log("clicked circle")
+    });
+
+    //onhover circle
+    document.getElementById("circle").addEventListener("onmouseover", function(){
+        console.log("hovered ircle")
+    });
+
+    //onclick keyboard
+    document.getElementById("keyboard").addEventListener("click", function(){
+        console.log("clicked keyboard")
+    });
+
+    //onhover keyboard
+    document.getElementById("keyboard").addEventListener("onmouseover", function(){
+        console.log("hovered keyboard")
+    });
+
 }
 
-//maybe?
-window.onload = makeSceneGraph
+window.onload = function () { 
+    addEventListeners()
+}
+
 
 </script>
 </head>
 
 <body style="margin: 0px">
-    <div style="padding: 20px; font-family: sans-serif;">
-        <!-- Circle Canvas -->
-        <canvas id="circle"></canvas> 
+    <div style="padding: 20px; font-family: sans-serif">
+        <div style="display: block">
+            <!-- Circle Canvas -->
+            <canvas id="circle" style="background-color: #f2f2f2; 
+            width: 100%;"></canvas> 
+        </div>
 
-        <!-- Keyboard Canvas -->
-        <canvas id="keyboard"></canvas>
+        <div style="display: block">
+            <!-- Keyboard Canvas -->
+            <canvas id="keyboard" style="background-color: #f2f2f2; 
+            display: block; width: 100%;"></canvas>
+        </div>
     </div>
 </body>
 
