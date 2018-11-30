@@ -4,16 +4,12 @@
  * Final Project
  */
 
-
 /* CirclePanel
  * CirclePanel
  */
 
 class CirclePanel {
-<<<<<<< Updated upstream
-	constructor(rMinRatio, rMaxRatio, thetaLeft, thetaRight, 
-	neighbors, letter) {
-
+	constructor(rMinRatio, rMaxRatio, thetaLeft, thetaRight, neighbors, letter) {
 		// Sizing
 		this.rMinRatio = rMinRatio;
 		this.rMaxRatio = rMaxRatio;
@@ -32,22 +28,11 @@ class CirclePanel {
 	}
 
 	// Draw this CirclePanel
-	drawSelf(graphics, canvasWidth) {
-
-	}
+	drawSelf(graphics, canvasWidth) {}
 
 	// Draw the related Panels
-	drawNeighborPanels(graphics, canvasWidth) {
-		
-	}
-=======
-    constructor () {
-        super()
-    
->>>>>>> Stashed changes
+	drawNeighborPanels(graphics, canvasWidth) {}
 
 	// Draw the related Keys
-	drawNeighborKeys(graphics, canvasWidth) {
-
-	}
+	drawNeighborKeys(graphics, canvasWidth) {}
 }
