@@ -82,7 +82,8 @@ if (!('webkitSpeechRecognition' in window)) {
     // event.results is an array of the recognized strings
     for (var i = event.resultIndex; i < event.results.length; ++i) { 
       if (event.results[i].isFinal) { 
-        final_transcript += event.results[i][0].transcript; 
+        // final_transcript += event.results[i][0].transcript; 
+        final_transcript = event.results[i][0].transcript; 
       } else { 
         interim_transcript += event.results[i][0].transcript; 
       }
