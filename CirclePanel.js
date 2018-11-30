@@ -10,13 +10,38 @@
  */
 
 class CirclePanel {
-    constructor () {
-    super()
-    
+	constructor(rMinRatio, rMaxRatio, thetaLeft, thetaRight, 
+	neighbors, letter) {
 
-    }
+		// Sizing
+		this.rMinRatio = rMinRatio;
+		this.rMaxRatio = rMaxRatio;
+		this.thetaLeft = thetaLeft;
+		this.thetaRight = thetaRight;
 
-    doSomething () { 
-        
-    }
+		// This letter
+		this.letter = letter;
+
+		// Related keys (including itself)
+		this.neighbors = neighbors;
+
+		// Draw statuses
+		this.isClicked = false;
+		this.isHovered = false;
+	}
+
+	// Draw this CirclePanel
+	drawSelf(graphics, canvasWidth) {
+
+	}
+
+	// Draw the related Panels
+	drawNeighborPanels(graphics, canvasWidth) {
+		neighbors.forEach(drawSelf(graphics, canvasWidth));
+	}
+
+	// Draw the related Keys
+	drawNeighborKeys(graphics, canvasWidth) {
+
+	}
 }
