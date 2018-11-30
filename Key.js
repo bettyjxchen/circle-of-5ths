@@ -1,15 +1,8 @@
-/*
-* Assignment 10
-* Betty Chen (betty.chen@tufts.edu)
-* Comp86
-*
-* Circle.js
-* The Circle class acts as a vehicle
-* shaped as a circle. Tick allows the
-* vehicle to drive closer or farther
-* by adjusting the Z position.
-*
-*/
+/* Betty Chen, Daniela Chita, Michael Gold
+ * COMP86
+ * Fall 2018
+ * Final Project
+ */
 
 class Key {
 	constructor(letter, 
@@ -45,6 +38,10 @@ class Key {
 
 	// Private draw functions
 	drawClicked(gc, canvasWidth) {
+		if (!this.isHovered()) {
+			return;
+		}
+
 		// Grey
 		gc.fillStyle = "#EEE";
 
@@ -54,8 +51,10 @@ class Key {
 	}
 
 	drawBorder(gc, canvasWidth) {
+		gc.beginPath();
+
 		// Black
-		gc.fillStyle = "#000";
+		gc.strokeStyle = "#000";
 
 		// Draw upper portion of Key
 		gc.moveTo(upperX, upperY+upperH);
@@ -76,11 +75,19 @@ class Key {
 		gc.lineTo(lowerX+lowerW, lowerY+lowerH);
 		gc.moveTo(lowerX+lowerW, lowerY+lowerH);
 		gc.lineTo(lowerX+lowerW, lowerY);
+
+		gc.stroke();
 	}
 
 	drawHovered(gc, canvasWidth) {
+		if (!this.isHovered()) {
+			return;
+		}
+
+		gc.beginPath();
+
 		// Red
-		gc.fillStyle = "#F00";
+		gc.strokeStyle = "#F00";
 
 		// Draw upper portion of Key
 		gc.moveTo(upperX, upperY+upperH);
@@ -101,5 +108,7 @@ class Key {
 		gc.lineTo(lowerX+lowerW, lowerY+lowerH);
 		gc.moveTo(lowerX+lowerW, lowerY+lowerH);
 		gc.lineTo(lowerX+lowerW, lowerY);
+
+		gc.stroke();
 	}
 }
