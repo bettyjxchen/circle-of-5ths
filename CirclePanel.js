@@ -4,10 +4,6 @@
  * Final Project
  */
 
-/* CirclePanel
- * CirclePanel
- */
-
 class CirclePanel {
 	constructor(letter, rMinRatio, rMaxRatio, thetaLeft, thetaRight) {
 		// This letter

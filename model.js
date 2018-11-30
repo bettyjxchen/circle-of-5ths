@@ -1,25 +1,21 @@
-/*
-* Assignment 10
-* Betty Chen (betty.chen@tufts.edu)
-* Comp86
-*
-* Circle.js
-* The Circle class acts as a vehicle
-* shaped as a circle. Tick allows the
-* vehicle to drive closer or farther
-* by adjusting the Z position.
-*
-*/
+/* Betty Chen, Daniela Chita, Michael Gold
+ * COMP86
+ * Fall 2018
+ * Final Project
+ */
 
 class Model {
-    constructor () {    
-        //variables
-        this.keys = [];
-        this.circlePanels = [];
+	constructor() {
+		//variables
+		this.notes = [];
+		this.keys = [];
+		this.circlePanels = [];
 
-    }
+		this.testKey = new Key("F", 50, 50, 10, 60, 50, 110, 15, 30);
 
-    populate () { 
-        
-    }
+		var c = document.getElementById("Keyboard");
+		var gc = c.getContext("2d");
+
+		testKey.draw(gc, 1);
+	}
 }
