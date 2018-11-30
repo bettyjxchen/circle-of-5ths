@@ -37,7 +37,7 @@ class CirclePanel {
 
 	// Draw the related Panels
 	drawNeighborPanels(graphics, canvasWidth) {
-		neighbors.forEach(drawSelf(graphics, canvasWidth));
+		
 	}
 
 	// Draw the related Keys
