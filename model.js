@@ -5,21 +5,21 @@
  */
 
 class Model {
-	constructor () {
-	
+	constructor() {
 		//variables
-		this.notes = []
+		this.notes = [];
 		this.keys = [];
 		this.circlePanels = [];
 
+		this.testKey = new Key("F", 50, 50, 10, 60, 50, 110, 15, 30);
 
+		var c = document.getElementById("Keyboard");
+		var gc = c.getContext("2d");
 
 
 		this.testWhiteKey = new Key("F", false, 50, 50, 10, 60, 50, 110, 15, 30);
 		this.testBlackKey = new Key("F#", true, 60, 50, 10, 60, 60, 0, 0, 0);
 
-		var c = document.getElementById("Keyboard");
-		var gc = c.getContext("2d");
 		//gc.fillStyle = "#FF0";
 		//gc.fillRect(50, 50, 200, 200);
 

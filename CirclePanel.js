@@ -6,7 +6,6 @@
 
 class CirclePanel {
 	constructor(letter, rMinRatio, rMaxRatio, thetaLeft, thetaRight) {
-
 		// This letter
 		this.letter = letter;
 
@@ -25,17 +24,11 @@ class CirclePanel {
 	}
 
 	// Draw this CirclePanel
-	draw(graphics, canvasWidth) {
-
-	}
+	draw(graphics, canvasWidth) {}
 
 	// Draw the related Panels
-	drawNeighborPanels(graphics, canvasWidth) {
-		
-	}
+	drawNeighborPanels(graphics, canvasWidth) {}
 
 	// Draw the related Keys
-	drawNeighborKeys(graphics, canvasWidth) {
-
-	}
+	drawNeighborKeys(graphics, canvasWidth) {}
 }

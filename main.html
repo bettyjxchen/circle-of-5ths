@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
+  <title>Comp 86: Circle of 5ths</title>
+
+  <script src="Model.js"></script>
+  <script src="Controller.js"></script>
+  <script type="text/javascript">
+    //add event listeners
+    function addEventListeners() {
+      //onclick circle
+      document.getElementById("circle").addEventListener("click", clickCircle);
+
+      //onhover circle
+      document.getElementById("circle").addEventListener("mouseover", hoverCircle);
+
+      //onclick keyboard
+      document.getElementById("keyboard").addEventListener("click", clickKeyboard);
+
+      //onhover keyboard
+      document.getElementById("keyboard").addEventListener("mouseover", hoverKeyboard);
+    }
+
+    window.onload = function () {
+      addEventListeners()
+    }
+  </script>
+</head>
+
+<body style="margin: 0px">
+  <div style="padding: 50px; font-family: sans-serif">
+    <!-- microphone control -->
+    <div id="microphone" style="padding-bottom: 50px;">
+      <div id="info">
+        <p id="info_start">
+          Click on the Start/stop button and begin speaking.
+        </p>
+        <p id="info_speak_now" style="display:none">
+          Speak now.
+        </p>
+        <p id="info_no_speech" style="display:none">
+          No speech was detected. You may need to adjust your <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone
+            settings</a>.
+        </p>
+        <p id="info_no_microphone" style="display:none">
+          No microphone was found. Ensure that a microphone is installed and that
+          <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+            microphone settings</a> are configured correctly.
+        </p>
+        <p id="info_allow" style="display:none">
+          Click the "Allow" button above to enable your microphone.
+        </p>
+        <p id="info_denied" style="display:none">
+          Permission to use microphone was denied.
+        </p>
+        <p id="info_blocked" style="display:none">
+          Permission to use microphone is blocked. To change, go to
+          chrome://settings/contentExceptions#media-stream
+        </p>
+        <p id="info_upgrade" style="display:none">
+          Web Speech API is not supported by this browser. Use <a href="//www.google.com/chrome">Chrome</a> version 25
+          or later.
+        </p>
+      </div>
+      <div id="div_start">
+        <button id="start_button" onclick="startButton(event)">Start/stop</button>
+      </div>
+      <div id="results">
+        <span class="final" id="final_span"></span> 
+        <span class="interim" id="interim_span"></span>
+      </div>
+    </div>
+
+    <!-- canvas area -->
+    <div style="width: 100%;">
+      <div style="width: 70%; margin: auto; margin-bottom: 50px;">
+        <!-- Circle Canvas -->
+        <canvas id="circle" style="background-color: #f2f2f2; width: 100%;"></canvas>
+      </div>
+
+      <div style="width: 70%; margin: auto;">
+        <!-- Keyboard Canvas -->
+        <canvas id="keyboard" style="background-color: #f2f2f2; width: 100%;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="webspeech.js"></script>
+</body>
+
+</html>
