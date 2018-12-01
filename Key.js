@@ -5,109 +5,90 @@
  */
 
 class Key {
-	constructor(letter, 
-	upperX, upperY, upperW, upperH, 
-	lowerX, lowerY, lowerW, lowerH) {
+	constructor(letter, isBlackKey, 
+	topX, topY, topW, topH, botX, botY, botW, botH) {
 
 		// Letter name
 		this.letter = letter;
+		this.isBlackKey = isBlackKey;
 
 		// Draw statuses
 		this.isClicked = false;
 		this.isHovered = false;
 
-		// Upper box portion of the key
-		this.upperX = upperX; //topleft
-		this.upperY = upperY; //topleft
-		this.upperW = upperW; //width
-		this.upperH = upperH; //height
 
-		// Lower box portion of the key
-		this.lowerX = lowerX; //topleft
-		this.lowerY = lowerY; //topleft
-		this.lowerW = lowerW; //width
-		this.lowerH = lowerH; //height
+		// upper box portion of the key
+		this.topX = topX; //topleft
+		this.topY = topY; //topleft
+		this.topW = topW; //width
+		this.topH = topH; //height
+
+		// lower box portion of the key (all 0 if black key)
+		this.botX = botX; //topleft
+		this.botY = botY; //topleft
+		this.botW = botW; //width
+		this.botH = botH; //height
+	}
+
+	// Pick correlation
+	isInside(x, y) {
+		return
+		// If in top box
+		((x >= this.topX && x <= this.topX+this.topW
+		&& y >= this.topY && y <= this.topY+this.topH)
+
+		// If in bot box
+		|| (x >= this.botX && x <= this.botX+botW
+		&& y >= this.botY && Y <= this.botY+botH));
 	}
 
 	// Public draw call
 	draw(gc, canvasWidth) {
-		this.drawClicked(gc, canvasWidth);
+		this.drawFill(gc, canvasWidth);
 		this.drawBorder(gc, canvasWidth);
-		this.drawHovered(gc, canvasWidth);
 	}
 
-	// Private draw functions
-	drawClicked(gc, canvasWidth) {
-		if (!this.isHovered()) {
-			return;
-		}
+	// Draw the filling
+	drawFill(gc, canvasWidth) {
 
-		// Grey
-		gc.fillStyle = "#EEE";
+		// Color if clicked/blackkey/whitekey
+		if (this.isClicked) gc.fillStyle = "#999"; //Grey
+		else if (this.isBlackKey) gc.fillStyle = "#000"; //Black
+		else gc.fillStyle = "#FFF"; //White
 
 		// Rectangle fills
-		gc.fillRect(upperX, upperY, upperW, upperH);
-		gc.fillRect(lowerX, lowerY, lowerW, lowerH);
+		gc.fillRect(this.topX, this.topY, this.topW, this.topH);
+		gc.fillRect(this.botX, this.botY, this.botW, this.botH);
 	}
 
 	drawBorder(gc, canvasWidth) {
 		gc.beginPath();
 
-		// Black
-		gc.strokeStyle = "#000";
+		// Color if hovered/nothovered
+		if (this.isHovered) gc.strokeStyle = "#F00"; //Red
+		else gc.strokeStyle = "#000"; //Black
 
 		// Draw upper portion of Key
-		gc.moveTo(upperX, upperY+upperH);
-		gc.lineTo(upperX, upperY);
-		gc.moveTo(upperX, upperY);
-		gc.lineTo(upperX+upperW, upperY);
-		gc.moveTo(upperX+upperW, upperY);
-		gc.lineTo(upperX+upperW, upperY+upperH);
-		gc.moveTo(upperX+upperW, upperY+upperH);
-		gc.lineTo(lowerX+lowerW, upperY+upperH);
-		gc.moveTo(upperX, upperY+upperH);
-		gc.lineTo(lowerX, upperY+upperH);
+		gc.moveTo(this.topX, this.topY+this.topH);
+		gc.lineTo(this.topX, this.topY);
+		gc.moveTo(this.topX, this.topY);
+		gc.lineTo(this.topX+this.topW, this.topY);
+		gc.moveTo(this.topX+this.topW, this.topY);
+		gc.lineTo(this.topX+this.topW, this.topY+this.topH);
+
+		// Line dividing upper and lower
+		gc.moveTo(this.topX+this.topW, this.topY+this.topH);
+		gc.lineTo(this.botX+this.botW, this.topY+this.topH);
+		gc.moveTo(this.topX, this.topY+this.topH);
+		gc.lineTo(this.botX, this.topY+this.topH);
 
 		// Draw lower portion of Key
-		gc.moveTo(lowerX, lowerY);
-		gc.lineTo(lowerX, lowerY+lowerH);
-		gc.moveTo(lowerX, lowerY+lowerH);
-		gc.lineTo(lowerX+lowerW, lowerY+lowerH);
-		gc.moveTo(lowerX+lowerW, lowerY+lowerH);
-		gc.lineTo(lowerX+lowerW, lowerY);
-
-		gc.stroke();
-	}
-
-	drawHovered(gc, canvasWidth) {
-		if (!this.isHovered()) {
-			return;
-		}
-
-		gc.beginPath();
-
-		// Red
-		gc.strokeStyle = "#F00";
-
-		// Draw upper portion of Key
-		gc.moveTo(upperX, upperY+upperH);
-		gc.lineTo(upperX, upperY);
-		gc.moveTo(upperX, upperY);
-		gc.lineTo(upperX+upperW, upperY);
-		gc.moveTo(upperX+upperW, upperY);
-		gc.lineTo(upperX+upperW, upperY+upperH);
-		gc.moveTo(upperX+upperW, upperY+upperH);
-		gc.lineTo(lowerX+lowerW, upperY+upperH);
-		gc.moveTo(upperX, upperY+upperH);
-		gc.lineTo(lowerX, upperY+upperH);
-
-		// Draw lower portion of Key
-		gc.moveTo(lowerX, lowerY);
-		gc.lineTo(lowerX, lowerY+lowerH);
-		gc.moveTo(lowerX, lowerY+lowerH);
-		gc.lineTo(lowerX+lowerW, lowerY+lowerH);
-		gc.moveTo(lowerX+lowerW, lowerY+lowerH);
-		gc.lineTo(lowerX+lowerW, lowerY);
+		gc.moveTo(this.botX, this.botY);
+		gc.lineTo(this.botX, this.botY+this.botH);
+		gc.moveTo(this.botX, this.botY+this.botH);
+		gc.lineTo(this.botX+this.botW, this.botY+this.botH);
+		gc.moveTo(this.botX+this.botW, this.botY+this.botH);
+		gc.lineTo(this.botX+this.botW, this.botY);
 
 		gc.stroke();
 	}
