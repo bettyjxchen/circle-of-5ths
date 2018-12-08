@@ -4,7 +4,7 @@
  * Final Project
  */
 
-class CirclePanel {
+class Circle {
 	constructor() {
 		this.isClicked = false;
 		this.isHovered = false;
@@ -44,9 +44,9 @@ class CirclePanel {
 	}
 
 	// Draw this CirclePanel
-	draw(graphics, cX, CY, radius) {
+	draw(gc, c) {
 		this.panels.forEach(function(panel) {
-			panel.draw(cX, cY, radius);
+			panel.draw(gc, c);
 		});
 	}
 
@@ -67,7 +67,7 @@ class CirclePanel {
 	}
 
 	// returns which panel the coords are in
-	isIn(x, y, c) {
+	isIn(c) {
 	}
 
 	// highlights the input panel string

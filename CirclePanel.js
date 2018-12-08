@@ -9,9 +9,6 @@ class CirclePanel {
 		// This letter
 		this.letter = letter;
 
-		// Related keys (including itself)
-		this.neighbors = neighbors;
-
 		// Draw statuses
 		this.isClicked = false;
 		this.isClickedNeighbor = false;
@@ -24,7 +21,7 @@ class CirclePanel {
 		this.thetaR = thetaR;
 	}
 
-	// Draw this CirclePanel (c is centerX, centerY, and radius)
+	// Draw this CirclePanel (c is centerX, centerY, and c)
 	draw(gc, c) {
 		// Select a color
 		if (this.isHovered) gc.strokeStyle = "#080"; // Green
@@ -32,18 +29,20 @@ class CirclePanel {
 		else if (this.isClickedNeighbor) gc.strokeStyle = "#800"; // Pink
 		else gc.strokeStyle = "#000"; // Black
 
+		angleMode(DEGREES);
+
 		// Draw this panel
 		gc.beginPath();
-		gc.arc(cX, cY, this.rMinRatio*radius, this.thetaL, this.thetaR);
-		gc.arc(cX, cY, this.rMaxRatio*radius, this.thetaL, this.thetaR);
-		gc.moveTo(this.rMinRatio*radius*Math.cos(this.thetaL), 
-			this.rMinRatio*radius*Math.sin(this.thetaL));
-		gc.lineTo(this.rMaxRatio*radius*Math.cos(this.thetaL), 
-			this.rMaxRatio*radius*Math.sin(this.thetaL));
-		gc.moveTo(this.rMinRatio*radius*Math.cos(this.thetaR),
-			this.rMinRatio*radius*Math.sin(this.thetaR));
-		gc.lineTo(this.rMaxRatio*radius*Math.cos(this.thetaR),
-			this.rMaxRatio*radius*Math.sin(this.thetaR));
+		gc.arc(c, c, this.rMinRatio*c, this.thetaL, this.thetaR);
+		gc.arc(c, c, this.rMaxRatio*c, this.thetaL, this.thetaR);
+		gc.moveTo(this.rMinRatio*c*Math.cos(this.thetaL), 
+			this.rMinRatio*c*Math.sin(this.thetaL));
+		gc.lineTo(this.rMaxRatio*c*Math.cos(this.thetaL), 
+			this.rMaxRatio*c*Math.sin(this.thetaL));
+		gc.moveTo(this.rMinRatio*c*Math.cos(this.thetaR),
+			this.rMinRatio*c*Math.sin(this.thetaR));
+		gc.lineTo(this.rMaxRatio*c*Math.cos(this.thetaR),
+			this.rMaxRatio*c*Math.sin(this.thetaR));
 		gc.stroke();
 	}
 
