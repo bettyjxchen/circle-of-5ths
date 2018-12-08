@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
+  <title>Comp 86: Circle of 5ths</title>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script src="Key.js"></script>
+  <script src="Keyboard.js"></script>
+  <script src="Scales.js"></script>
+  <script src="CirclePanel.js"></script>
+  <script src="Circle.js"></script>
+  <script src="Model.js"></script>
+  <script src="Controller.js"></script>
+  <script type="text/javascript">
+
+    //add event listeners
+    function addEventListeners() {
+      //onclick circle
+      document.getElementById("circle").addEventListener("click", clickCircle)
+
+    }
+
+    function playMelody() {
+        notes = [
+            [659, 4],
+            [659, 4],
+            [659, 4],
+            [523, 8],
+            [0, 16],
+            [783, 16],
+            [659, 4],
+            [523, 8],
+            [0, 16],
+            [783, 16],
+            [659, 4],
+            [0, 4],
+            [987, 4],
+            [987, 4],
+            [987, 4],
+            [1046, 8],
+            [0, 16],
+            [783, 16],
+            [622, 4],
+            [523, 8],
+            [0, 16],
+            [783, 16],
+            [659, 4]
+        ];
+
+        notes.reverse(); 
+        tempo = 100;
+
+        // create web audio api context
+        var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playMelody(){
+            if (notes.length > 0){
+                note = notes.pop();
+                playNote(note[0],1000*256/(note[1]*tempo));
+            }
+        }
+    }
+
+    function playNote(frequency, duration) {
+        // create Oscillator node
+        var oscillator = audioCtx.createOscillator();
+        
+        oscillator.type = 'square';
+        oscillator.frequency.value = frequency; // value in hertz
+        oscillator.connect(audioCtx.destination);
+        oscillator.start();
+            
+        setTimeout(
+            function(){
+                oscillator.stop();
+                playMelody();
+            }, duration);
+    }
+      // //onhover circle
+      // document.getElementById("circle").addEventListener("mouseover", hoverCircle);
+
+      // //onclick keyboard
+      // document.getElementById("keyboard").addEventListener("click", clickKeyboard);
+
+      // //onhover keyboard
+      // document.getElementById("keyboard").addEventListener("mouseover", hoverKeyboard);
+    
+    function playNote2() {
+        // create web audio api context
+        var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        // create Oscillator node
+        var oscillator = audioCtx.createOscillator();
+
+        oscillator.type = 'square';
+        oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
+        oscillator.connect(audioCtx.destination);
+        oscillator.start();
+
+    }
+
+    window.onload = function () {
+        //create Model
+        this.model = new Model();
+        
+        addEventListeners()
+        playMelody()
+        // playNote2()
+    }
+
+  </script>
+</head>
+
+<body style="margin: 0px">
+  <div style="padding: 20px; font-family: sans-serif">
+    
+    <!-- container -->
+    <div class="container">
+        <!-- title -->
+        <div class="row">
+            <div class="col-md">
+                <h1 class="mx-auto">Circle of 5ths</h1>
+            <div>
+        </div>
+
+        <!-- speech -->
+        <div class="row">
+            <!-- microphone -->
+            <div class="col-md p-0" id="microphone" style="margin-left: 15px;">
+                <!-- info tags -->
+                <div id="info" style="display: inline-block">
+                  <p id="info_start" class="mb-3">
+                    Click to Start Audio.
+                  </p>
+                  <p id="info_speak_now" class="mb-3" style="display:none">
+                    Speak now.
+                  </p>
+                  <p id="info_no_speech" class="mb-3" style="display:none">
+                    No speech was detected. You may need to adjust your <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">microphone
+                      settings</a>.
+                  </p>
+                  <p id="info_no_microphone" class="mb-3" style="display:none">
+                    No microphone was found. Ensure that a microphone is installed and that
+                    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+                      microphone settings</a> are configured correctly.
+                  </p>
+                  <p id="info_denied" class="mb-3" style="display:none">
+                    Permission to use microphone was denied.
+                  </p>
+                  <p id="info_blocked" class="mb-3" style="display:none">
+                    Permission to use microphone is blocked. To change, go to
+                    chrome://settings/contentExceptions#media-stream
+                  </p>
+                  <p id="info_upgrade" class="mb-3" style="display:none">
+                    Web Speech API is not supported by this browser. Use <a href="//www.google.com/chrome">Chrome</a> version 25 or later.
+                  </p>
+                </div>
+               
+                <!-- buttons -->
+                <div id="div_start" style="display: inline-block">
+                  <button id="start_button" type="button" class="btn btn-primary btn-sm" onclick="startButton(event)">Start</button>
+                  <button id="stop_button" type="button" class="btn btn-danger btn-sm" onclick="stopButton(event)">Stop</button>
+                </div>
+            </div>
+            <!-- transcript -->
+            <div class="col-md">
+                <div id="results" class="col-md">
+                  <!-- final results-->
+                  <div class="mx-auto">
+                    <h1 class="final font-weight-bold float-right" id="final_span"></h1> 
+                  </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- canvas -->
+        <div class="row">
+            <!-- canvas area -->
+            <canvas id="circle" class="mb-3" align="center" width="600px" height= "600px" style="background: url('Circle.jpg'); background-size: 100% 100%; margin-left: 20%; margin-right: 20%">
+            </canvas>
+
+            <canvas id="keyboard" align="center" style="margin-left: 37%; margin-right: 35%" height="100px">
+            </canvas>
+        </div>
+    </div>
+
+  <script src="webspeech.js"></script>
+</body>
+
+</html>
