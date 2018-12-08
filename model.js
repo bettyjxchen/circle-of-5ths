@@ -25,7 +25,7 @@ class Model {
 		this.keyboard.draw(this.gc_k);
 	}
 
-	//calls keyboard with scale
+	//shows scale on keyboard
 	showScale(scaleName) {
 
 		//get Scale notes object

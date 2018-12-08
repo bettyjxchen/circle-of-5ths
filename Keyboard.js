@@ -24,7 +24,7 @@ class Keyboard {
 
 		this.keys = [];
 
-		//A0, Lowest 3 group
+		//A0, Lowest 3 group 
 		this.keys.push(new Key("A", false, 27.5000, 0, 0, 20, topH, 0, topH, 23, botH)); // EXTRA WIDE
 		this.keys.push(new Key("A#", true, 29.1352, 20, 0, 14, topH, 20, topH, 0, 0));
 		this.keys.push(new Key("B", false, 30.8677, 34, 0, 13, topH, 23, topH, 24, botH));
@@ -53,8 +53,9 @@ class Keyboard {
 		});
 	}
 
-	//clicks keys in notes array
+	//clicks keys in selected scale of notes
 	clickKeys(notes) {
+
 		this.keys.forEach(function(key) {
 			if (notes.includes(key.letter)) {
 				key.setClicked(true);
