@@ -17,8 +17,8 @@ class CirclePanel {
 		// Sizing
 		this.rMinRatio = rMinRatio;
 		this.rMaxRatio = rMaxRatio;
-		this.thetaL = thetaL;
-		this.thetaR = thetaR;
+		this.thetaL = toRadians(thetaL);
+		this.thetaR = toRadians(thetaR);
 	}
 
 	// Draw this CirclePanel (c is centerX, centerY, and c)
@@ -28,8 +28,6 @@ class CirclePanel {
 		else if (this.isClicked) gc.strokeStyle = "#F00"; // Red
 		else if (this.isClickedNeighbor) gc.strokeStyle = "#800"; // Pink
 		else gc.strokeStyle = "#000"; // Black
-
-		angleMode(DEGREES);
 
 		// Draw this panel
 		gc.beginPath();
@@ -46,13 +44,17 @@ class CirclePanel {
 		gc.stroke();
 	}
 
+	toRadians(angle) {
+		return angle * (Math.PI / 180);
+	}
+
 	// returns which panel the coords are in
 	isIn(x, y, c) {
 		var r = Math.sqrt(( (cX-x)*(cX*x) + ((cY-y)*(cY*y)) ));
 		var theta = Math.atan((cY-y)/(cX-x));
 
 		return (r > this.rMinRatio && r < this.rMaxRatio
-			&& theta > this.thetaL && theta < this.thetaR);
+		&& theta > this.thetaL && theta < this.thetaR);
 	}
 
 	// highlights the input panel string
