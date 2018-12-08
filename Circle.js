@@ -67,7 +67,12 @@ class Circle {
 	}
 
 	// returns which panel the coords are in
-	isIn(c) {
+	isIn(x, y, c) {
+		this.panels.forEach(function(panel) {
+			if (panel.isIn(x, y, c))
+				return panel;
+		});
+		return null;
 	}
 
 	// highlights the input panel string
