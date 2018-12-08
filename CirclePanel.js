@@ -49,7 +49,7 @@ class CirclePanel {
 
 	// returns which panel the coords are in
 	isIn(x, y, c) {
-		var r = Math.sqrt(((cX-x)*(cX*x) + ((cY-y)*(cY*y)));
+		var r = Math.sqrt(( (cX-x)*(cX*x) + ((cY-y)*(cY*y)) ));
 		var theta = Math.atan((cY-y)/(cX-x));
 
 		return (r > this.rMinRatio && r < this.rMaxRatio

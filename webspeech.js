@@ -22,6 +22,7 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.continuous = true; 
   recognition.interimResults = true; 
 
+  //-----------On Start-----------//
   recognition.onstart = function() { 
     recognizing = true; 
     showInfo('info_speak_now'); 
@@ -57,16 +58,13 @@ if (!('webkitSpeechRecognition' in window)) {
       showInfo('info_start');
       return;
     }
-    showInfo('');
+    showInfo('info_start');
     if (window.getSelection) {
       window.getSelection().removeAllRanges();
       var range = document.createRange();
       range.selectNode(document.getElementById('final_span'));
       window.getSelection().addRange(range);
     }
-
-    // Display or otherwise utilize result
-    doit (final_transcript); 
   };
 
   //-----------On Result----------//
@@ -80,7 +78,7 @@ if (!('webkitSpeechRecognition' in window)) {
     }
 
     // event.results is an array of the recognized strings
-    for (var i = event.resultIndex; i < event.results.length; ++i) { 
+    for (var i = event.resultIndex; i < event.results.length; i++) { 
       if (event.results[i].isFinal) { 
         // final_transcript += event.results[i][0].transcript; 
         final_transcript = event.results[i][0].transcript; 
@@ -90,27 +88,43 @@ if (!('webkitSpeechRecognition' in window)) {
     }
 
     final_span.innerHTML = linebreak(final_transcript); 
-    interim_span.innerHTML = linebreak(interim_transcript);
+    // interim_span.innerHTML = linebreak(interim_transcript);
+
+    //utilize result
+    doit(final_transcript); 
+
   };
 }
 
 //------------------------Callbacks------------------------//
-//start or stop mic button
-function startButton(event) {
-  // Stop
-  if (recognizing) {
-    recognition.stop();
-  }
 
-  // Start
-  else {
+//start mic button
+function startButton(event) {
+ 
+    //disable start button
+    document.getElementById("start_button").disabled = true;
+    //enable stop button
+    document.getElementById("stop_button").disabled = false;
+
     final_transcript = '';
     recognition.start();
     ignore_onend = false;
     final_span.innerHTML = '';
-    interim_span.innerHTML = '';
-    showInfo('info_allow');
+    // interim_span.innerHTML = '';
     start_timestamp = event.timeStamp;
+}
+
+//stop mic button
+function stopButton(event) {
+    //disable stop button
+    document.getElementById("stop_button").disabled = true;
+    //enable start button
+    document.getElementById("start_button").disabled = false;
+    //clear transcript
+    final_span.innerHTML = '';
+
+  if (recognizing) {
+    recognition.stop();
   }
 }
 
@@ -119,7 +133,7 @@ function showInfo(s) {
   if (s) {
     for (var child = info.firstChild; child; child = child.nextSibling) {
       if (child.style) {
-        child.style.display = child.id == s ? 'inline' : 'none';
+        child.style.display = child.id == s ? 'block' : 'none';
       }
     }
     info.style.visibility = 'visible';
@@ -129,8 +143,61 @@ function showInfo(s) {
 }
 
 function doit (string) { 
-    console.log(final_transcript)
+    if (final_transcript != "") {
 
+        //convert to lower
+        string = string.toLowerCase();
+        //strip any trailing spice
+        if (string.charAt(0) == " ") {
+            string = string.substring(1);
+        }
+    
+        //switch on transcript
+        switch (string) {
+            case "c major":
+                processSpeech("c major")
+                break;
+            case "g major":
+                console.log("g major")
+                break;
+            case "d major":
+                console.log("d major")
+                break;
+            case "a major":
+                console.log("a major")
+                break;
+            case "e major":
+                console.log("e major")
+                break;
+            case "b major":
+                console.log("b major")
+                break;
+            case "f sharp major":
+                console.log("f sharp major")
+                break;
+            case "c sharp major":
+                console.log("c sharp major")
+                break;
+            case "f minor":
+                console.log("f minor")
+                break;
+            case "b flat minor":
+                console.log("HEYY")
+                break;
+            case "e flat minor":
+                console.log("HEYY")
+                break;
+            case "a flat minor":
+                console.log("HEYY")
+                break;
+            case "g flat minor":
+                console.log("HEYY")
+                break;
+            case "c flat minor":
+                console.log("HEYY")
+                break;
+        }
+    }
 }
 
 // Convert line breaks to HTML

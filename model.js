@@ -6,24 +6,18 @@
 
 class Model {
 	constructor() {
-		//variables
-		this.notes = [];
-		this.keys = [];
-		this.circlePanels = [];
+		//objects
+		this.Keyboard = new Keyboard();
+		// this.Scale = new Scale();
+		// this.Circle = new Circle();
+	}
 
-		this.testKey = new Key("F", 50, 50, 10, 60, 50, 110, 15, 30);
+	clickedCircle(scaleName) {
 
-		var c = document.getElementById("Keyboard");
-		var gc = c.getContext("2d");
+	}
 
-
-		this.testWhiteKey = new Key("F", false, 50, 50, 10, 60, 50, 110, 15, 30);
-		this.testBlackKey = new Key("F#", true, 60, 50, 10, 60, 60, 0, 0, 0);
-
-		//gc.fillStyle = "#FF0";
-		//gc.fillRect(50, 50, 200, 200);
-
-		this.testWhiteKey.draw(gc, 1);
-		this.testBlackKey.draw(gc, 1);
+	isIn(x, y, radius) {
+		console.log("x is: " + x + "y is: " + y)
+		return ""
 	}
 }
