@@ -54,13 +54,23 @@ class Key {
 	drawFill(gc) {
 
 		//color if clicked/blackkey/whitekey
-		if (this.isClicked) gc.fillStyle = "#FFFF33"; //Yellow
-		else if (this.isBlackKey) gc.fillStyle = "#000"; //Black
+		if (this.isBlackKey) gc.fillStyle = "#000"; //Black
 		else gc.fillStyle = "#FFF"; //White
 
 		//rectangle fills
 		gc.fillRect(this.topX, this.topY, this.topW, this.topH);
 		gc.fillRect(this.botX, this.botY, this.botW, this.botH);
+
+		if (this.isBlackKey) {
+			gc.fillStyle = "#CCCCCC";
+			gc.fillRect(this.topX+this.topW-2, 0, 2, this.topY+this.topH-2);
+		}
+
+		if (this.isClicked) {
+			gc.fillStyle = "rgba(255, 255, 0, .4"; //Yellow
+			gc.fillRect(this.topX, this.topY, this.topW, this.topH);
+			gc.fillRect(this.botX, this.botY, this.botW, this.botH);
+		}
 	}
 
 	//draw border in key

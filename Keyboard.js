@@ -44,6 +44,22 @@ class Keyboard {
 		this.keys.push(new Key("A", false, 55.0000, 171, 0, 13, topH, 164, topH, 23, botH));
 		this.keys.push(new Key("A#", true, 58.2705, 184, 0, 14, topH, 184, topH, 0, 0));
 		this.keys.push(new Key("B", false, 61.7354, 198, 0, 13, topH, 187, topH, 24, botH));
+
+		//C2
+		this.keys.push(new Key("C", false, 65.4064, 211, 0, 14, topH, 211, topH, 23, botH));
+		this.keys.push(new Key("C#", true, 69.2957, 225, 0, 14, topH, 225, topH, 0, 0));
+		this.keys.push(new Key("D", false, 73.4162, 239, 0, 14, topH, 234, topH, 24, botH));
+		this.keys.push(new Key("D#", true, 77.7817, 253, 0, 14, topH, 253, topH, 0, 0));
+		this.keys.push(new Key("E", false, 82.4069, 267, 0, 14, topH, 258, topH, 23, botH));
+
+		//F2
+		this.keys.push(new Key("F", false, 87.3071, 281, 0, 13, topH, 281, topH, 24, botH));
+		this.keys.push(new Key("F#", true, 92.4986, 294, 0, 14, topH, 294, topH, 0, 0));
+		this.keys.push(new Key("G", false, 97.9989, 308, 0, 13, topH, 305, topH, 23, botH));
+		this.keys.push(new Key("G#", true, 103.826, 321, 0, 14, topH, 321, topH, 0, 0));
+		this.keys.push(new Key("A", false, 110.000, 335, 0, 13, topH, 328, topH, 23, botH));
+		this.keys.push(new Key("A#", true, 116.541, 348, 0, 14, topH, 348, topH, 0, 0));
+		this.keys.push(new Key("B", false, 123.471, 362, 0, 13, topH, 351, topH, 24, botH));
 	}
 
 	//draw all keys
