@@ -5,12 +5,13 @@
  */
 
 class Key {
-	constructor(letter, isBlackKey, 
+	constructor(letter, isBlackKey, frequency, 
 	topX, topY, topW, topH, botX, botY, botW, botH) {
 
 		// Letter name
 		this.letter = letter;
 		this.isBlackKey = isBlackKey;
+		this.frequency = frequency;
 
 		// Draw statuses
 		this.isClicked = false;
@@ -43,13 +44,13 @@ class Key {
 	}
 
 	// Public draw call
-	draw(gc, canvasWidth) {
-		this.drawFill(gc, canvasWidth);
-		this.drawBorder(gc, canvasWidth);
+	draw(gc) {
+		this.drawFill(gc);
+		this.drawBorder(gc);
 	}
 
 	// Draw the filling
-	drawFill(gc, canvasWidth) {
+	drawFill(gc) {
 
 		// Color if clicked/blackkey/whitekey
 		if (this.isClicked) gc.fillStyle = "#999"; //Grey
@@ -61,7 +62,7 @@ class Key {
 		gc.fillRect(this.botX, this.botY, this.botW, this.botH);
 	}
 
-	drawBorder(gc, canvasWidth) {
+	drawBorder(gc) {
 		gc.beginPath();
 
 		// Color if hovered/nothovered

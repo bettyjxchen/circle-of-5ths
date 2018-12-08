@@ -40,10 +40,10 @@ class Scale {
 	constructor(name, n1, n2, n3, n4, n5, n6, n7)
 	{
 		this.name = name;
-		this.scale = [n1, n2, n3, n4, n5, n6, n7];
+		this.notes = [n1, n2, n3, n4, n5, n6, n7];
 	}
 
 	getScale() {
-		return this.scale;
+		return this.notes;
 	}
 }
