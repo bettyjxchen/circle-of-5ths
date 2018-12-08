@@ -1,8 +1,15 @@
-/* Betty Chen, Daniela Chita, Michael Gold
- * COMP86
- * Fall 2018
- * Final Project
- */
+/*
+* Assignment 11
+* Betty, Daniela, Michael
+* Comp86
+*
+* CirclePanel.js
+* This is the CirclePanel class which
+* was implemented but not used in 
+* our final project. Will be added
+* for future implementation. The class
+* draws and highlights a circle of 5ths.
+*/
 
 class CirclePanel {
 	constructor(letter, rMinRatio, rMaxRatio, thetaL, thetaR) {

@@ -1,8 +1,15 @@
-/* Betty Chen, Daniela Chita, Michael Gold
- * COMP86
- * Fall 2018
- * Final Project
- */
+/*
+* Assignment 11
+* Betty, Daniela, Michael
+* Comp86
+*
+* Circle.js
+* This is the Circle class which
+* was implemented but not used in 
+* our final project. Will be added
+* for future implementation. The class
+* draws and highlights a circle of 5ths.
+*/
 
 class Circle {
 	constructor() {
@@ -43,14 +50,14 @@ class Circle {
 		]
 	}
 
-	// Draw this CirclePanel
+	//draw this CirclePanel
 	draw(gc, c) {
 		this.panels.forEach(function(panel) {
 			panel.draw(gc, c);
 		});
 	}
 
-	// Draw a scale
+	//draw a scale
 	setScale(scale) {
 		this.panels.forEach(function(panel) {
 			if (scale.notes[0] == panel.letter) {
@@ -66,7 +73,7 @@ class Circle {
 		});
 	}
 
-	// returns which panel the coords are in
+	//returns which panel the coords are in
 	isIn(x, y, c) {
 		this.panels.forEach(function(panel) {
 			if (panel.isIn(x, y, c))
@@ -75,11 +82,11 @@ class Circle {
 		return null;
 	}
 
-	// highlights the input panel string
+	//highlights the input panel string
 	mouseOver(panel) {
 	}
 
-	// does action for input panel string
+	//does action for input panel string
 	clicked(panel) {
 	}
 }

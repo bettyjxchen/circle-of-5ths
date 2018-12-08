@@ -1,10 +1,13 @@
 /*
 * Assignment 11
-* Betty Chen (betty.chen@tufts.edu)
+* Betty, Daniela, Michael
 * Comp86
 *
 * webspeech.js
-* This is the webspeech API.
+* This is the webspeech API used to 
+* process speech for scales. API used
+* to recognize voice command to highlight
+* keys on keyboard.
 *
 */
 
@@ -87,11 +90,11 @@ if (!('webkitSpeechRecognition' in window)) {
       }
     }
 
+    //show final transcript
     final_span.innerHTML = linebreak(final_transcript); 
-    // interim_span.innerHTML = linebreak(interim_transcript);
 
-    //utilize result
-    doit(final_transcript); 
+    //processes transcript
+    process(final_transcript); 
 
   };
 }
@@ -142,7 +145,8 @@ function showInfo(s) {
   }
 }
 
-function doit (string) { 
+//processes speech and calls show scale
+function process(string) { 
     if (final_transcript != "") {
 
         //convert to lower
@@ -152,59 +156,12 @@ function doit (string) {
             string = string.substring(1);
         }
 
-        model.showScale(string)
-
-        return
-
-        //switch on transcript
-        switch (string) {
-            case "c major":
-                processSpeech("c major")
-                break;
-            case "g major":
-                console.log("g major")
-                break;
-            case "d major":
-                console.log("d major")
-                break;
-            case "a major":
-                console.log("a major")
-                break;
-            case "e major":
-                console.log("e major")
-                break;
-            case "b major":
-                console.log("b major")
-                break;
-            case "f sharp major":
-                console.log("f sharp major")
-                break;
-            case "c sharp major":
-                console.log("c sharp major")
-                break;
-            case "f minor":
-                console.log("f minor")
-                break;
-            case "b flat minor":
-                console.log("HEYY")
-                break;
-            case "e flat minor":
-                console.log("HEYY")
-                break;
-            case "a flat minor":
-                console.log("HEYY")
-                break;
-            case "g flat minor":
-                console.log("HEYY")
-                break;
-            case "c flat minor":
-                console.log("HEYY")
-                break;
-        }
+        //call model to show scale
+        model.showScale(string)  
     }
 }
 
-// Convert line breaks to HTML
+//convert line breaks to HTML
 var two_line = /\n\n/g;
 var one_line = /\n/g;
 function linebreak(s) {
@@ -212,7 +169,6 @@ function linebreak(s) {
 }
 
 //user message about browser incompatible
-//with WebSpeech
 function upgrade() {
   start_button.style.visibility = 'hidden';
   showInfo('info_upgrade');

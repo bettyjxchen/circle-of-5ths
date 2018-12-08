@@ -1,8 +1,18 @@
-/* Betty Chen, Daniela Chita, Michael Gold
- * COMP86
- * Fall 2018
- * Final Project
- */
+/*
+* Assignment 11
+* Betty, Daniela, Michael
+* Comp86
+*
+* Scales.js, Scale.js
+* This is the Scales class which has an
+* array of all scales which are Scale 
+* objects. Each object has a scale
+* name as well as the notes in the scale
+* which is an array of strings. This 
+* class primarily serves to return the
+* notes of a scale.
+*
+*/
 
 class Scales {
 	constructor () {
@@ -21,7 +31,7 @@ class Scales {
 			new Scale("a sharp major", "b flat major", "A#", "C", "D", "D#", "F", "G", "A"),
 			new Scale("b major", "c flat major", "B", "C#", "D#", "E", "F#", "G#", "A#"),
 
-				// Minor scales
+			// Minor scales
 			new Scale("c minor", "b sharp minor", "C", "D", "D#", "F", "G", "G#", "A#"),
 			new Scale("d minor", "", "D", "E", "F", "G", "A", "A#", "C",),
 			new Scale("e minor", "f flat minor", "E", "F#", "G", "A", "B", "C", "D"),
@@ -35,22 +45,18 @@ class Scales {
 			new Scale("g sharp minor", "a flat minor", "G#", "A#", "B", "C#", "D#", "E", "F#"),
 			new Scale("a sharp minor", "b flat minor", "A#", "C", "C#", "D#", "F", "F#", "G#")
 		]
-	
 	}
 
+	//get notes in scale obj
 	getNotes(scaleName) {
-		console.log("checking at scales 42: " + scaleName)
-
 		var notes = []
 
+		//if scalename matches, return notes array
 		this.scales.forEach(function(scale) {
 			if (scale.isKeyName(scaleName)) {
-				console.log("checking at scales 44: " + scaleName)
-				notes = scale.notes;
+				notes = scale.getScale();
 			}
 		});
-
-		console.log(notes[0])
 
 		return notes
 	}
@@ -64,13 +70,14 @@ class Scale {
 		if (name2 != "") this.names.push(name2);
 
 		this.notes = [n1, n2, n3, n4, n5, n6, n7];
-		console.log(this.notes[0])
 	}
 
+	//return notes in scale obj
 	getScale() {
 		return this.notes;
 	}
 
+	//return if name exists in Scale
 	isKeyName(name) {
 		return (this.names.includes(name));
 	}
