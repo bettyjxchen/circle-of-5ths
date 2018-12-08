@@ -14,13 +14,13 @@
 
 //********* event listener callbacks *********//
 function clickCircle(e) {
-    //get scale from click pos
-    var scaleName = model.isIn(e.offsetX, e.offsetY, document.getElementById("circle").clientWidth);
-    model.clickedCircle(scaleName);
+    // //get scale from click pos
+    // var scaleName = model.isIn(e.offsetX, e.offsetY, document.getElementById("circle").clientWidth);
+    // model.clickedCircle(scaleName);
 }
 
 function processSpeech(scaleName) {
     //calls model
-    model.clickedCircle(scaleName)
+    model.showScale(scaleName)
 }
 

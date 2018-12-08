@@ -41,22 +41,21 @@ class Keyboard {
 		});
 	}
 
+	clickKeys(notes) {
+		this.keys.forEach(function(key) {
+			if (notes.contains(key.letter)) {
+				key.setClicked(true);
+			}
+			else {
+				key.setClicked(false);
+			}
+		});
+	}
+
+	// Click all
 	clickAll() {
 		this.keys.forEach(function(key) {
 			key.setClicked(true);
 		});
-	}
-
-	play(scaleName) {
-		
-		
-	}
-	
-	// play(note) {
-
-	// }
-
-	playAll(note) {
-
 	}
 }

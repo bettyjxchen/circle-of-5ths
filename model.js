@@ -10,7 +10,7 @@ class Model {
 		var gc = c.getContext("2d");
 
 		var k = document.getElementById("keyboard");
-		var gc_k = k.getContext("2d");
+		this.gc_k = k.getContext("2d");
 
 		//objects
 		this.keyboard = new Keyboard();
@@ -20,12 +20,17 @@ class Model {
 		this.circle.draw(gc, 300);
 		this.isIn()
 
-		this.keyboard.draw(gc_k);
+		this.keyboard.draw(this.gc_k);
 	}
 
-	clickedCircle(scaleName) {
-		//highlight certain scale
-		keyboard.play(scaleName)
+	showScale(scaleName) {
+
+		//get Scale notes object
+		var notes = scales.getNotes(scaleName)
+
+		//tells keyboard to click keys in notes
+		this.keyboard.clickKeys(notes)
+		this.keyboard.draw(this.gc_k)
 	}
 
 	isIn(x, y, c) {
