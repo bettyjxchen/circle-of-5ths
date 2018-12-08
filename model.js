@@ -21,8 +21,7 @@ class Model {
 
 	}
 
-	isIn(x, y, radius) {
-		console.log("x is: " + x + "y is: " + y)
-		return ""
+	isIn(x, y, c) {
+		
 	}
 }

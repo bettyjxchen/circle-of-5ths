@@ -17,8 +17,8 @@ class CirclePanel {
 		// Sizing
 		this.rMinRatio = rMinRatio;
 		this.rMaxRatio = rMaxRatio;
-		this.thetaL = toRadians(thetaL);
-		this.thetaR = toRadians(thetaR);
+		this.thetaL = this.toRadians(thetaL);
+		this.thetaR = this.toRadians(thetaR);
 	}
 
 	// Draw this CirclePanel (c is centerX, centerY, and c)
