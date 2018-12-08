@@ -39,13 +39,20 @@ class Scales {
 	}
 
 	getNotes(scaleName) {
+		console.log("checking at scales 42: " + scaleName)
+
+		var notes = []
+
 		this.scales.forEach(function(scale) {
 			if (scale.isKeyName(scaleName)) {
-				return scale.notes;
+				console.log("checking at scales 44: " + scaleName)
+				notes = scale.notes;
 			}
 		});
 
-		return null;
+		console.log(notes[0])
+
+		return notes
 	}
 }
 
@@ -57,6 +64,7 @@ class Scale {
 		if (name2 != "") this.names.push(name2);
 
 		this.notes = [n1, n2, n3, n4, n5, n6, n7];
+		console.log(this.notes[0])
 	}
 
 	getScale() {
@@ -64,6 +72,6 @@ class Scale {
 	}
 
 	isKeyName(name) {
-		return (this.names.contains(name));
+		return (this.names.includes(name));
 	}
 }

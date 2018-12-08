@@ -151,7 +151,11 @@ function doit (string) {
         if (string.charAt(0) == " ") {
             string = string.substring(1);
         }
-    
+
+        model.showScale(string)
+
+        return
+
         //switch on transcript
         switch (string) {
             case "c major":

@@ -25,16 +25,22 @@ class Model {
 
 	showScale(scaleName) {
 
-		//get Scale notes object
-		var notes = scales.getNotes(scaleName)
+		console.log("checking at model 28: " + scaleName)
 
-		//tells keyboard to click keys in notes
-		this.keyboard.clickKeys(notes)
-		this.keyboard.draw(this.gc_k)
+		//get Scale notes object
+		var notes = this.scales.getNotes(scaleName)
+
+		if (notes == null) {
+			console.log("its null")
+		} else {
+			//tells keyboard to click keys in notes
+			this.keyboard.clickKeys(notes)
+			this.keyboard.draw(this.gc_k)
+		}
 	}
 
 	isIn(x, y, c) {
-		this.keyboard.clickAll();
+		// this.keyboard.clickAll();
 		
 	}
 }

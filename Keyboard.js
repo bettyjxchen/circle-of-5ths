@@ -43,10 +43,9 @@ class Keyboard {
 
 	clickKeys(notes) {
 		this.keys.forEach(function(key) {
-			if (notes.contains(key.letter)) {
+			if (notes.includes(key.letter)) {
 				key.setClicked(true);
-			}
-			else {
+			} else {
 				key.setClicked(false);
 			}
 		});

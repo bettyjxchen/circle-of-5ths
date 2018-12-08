@@ -57,7 +57,7 @@ class Key {
 	drawFill(gc) {
 
 		// Color if clicked/blackkey/whitekey
-		if (this.isClicked) gc.fillStyle = "#FFFF33"; //Grey
+		if (this.isClicked) gc.fillStyle = "#FFFF33"; //Yellow
 		else if (this.isBlackKey) gc.fillStyle = "#000"; //Black
 		else gc.fillStyle = "#FFF"; //White
 
