@@ -21,7 +21,7 @@ class Scales {
 			new Scale("a sharp major", "b flat major", "A#", "C", "D", "D#", "F", "G", "A"),
 			new Scale("b major", "c flat major", "B", "C#", "D#", "E", "F#", "G#", "A#"),
 
-				// Minor scales
+			// Minor scales
 			new Scale("c minor", "b sharp minor", "C", "D", "D#", "F", "G", "G#", "A#"),
 			new Scale("d minor", "", "D", "E", "F", "G", "A", "A#", "C",),
 			new Scale("e minor", "f flat minor", "E", "F#", "G", "A", "B", "C", "D"),
