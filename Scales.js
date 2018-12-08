@@ -6,7 +6,7 @@
 
 class Scales {
 	constructor () {
-		this.scales = [
+		this.scales = []
 		this.scales.push("c major", "C", "D", "E", "F", "G", "A", "B")
 		this.scales.push("c sharp major", "C sharp", "D sharp", "E sharp", "F sharp", "G sharp", "A sharp", "B sharp")
 		this.scales.push("d major", "D", "E", "F sharp", "G", "A", "B", "C sharp")
@@ -31,8 +31,7 @@ class Scales {
 		this.scales.push("e flat minor", "E flat", "F", "G flat", "A flat", "B flat", "C flat", "D flat")
 		this.scales.push("f sharp minor", "F sharp", "G sharp", "A", "B", "C sharp", "D", "E")
 		this.scales.push("a flat minor", "A flat", "B flat", "C flat", "D flat", "E flat", "F flat", "G flat")
-		this.scales.push("b flat minor", "B flat", "C", "D flat", "E flat", "F", "G flat", "A flat"	
-		]
+		this.scales.push("b flat minor", "B flat", "C", "D flat", "E flat", "F", "G flat", "A flat")
 	}
 }
 
