@@ -42,6 +42,8 @@ class Scales {
 				return scale;
 			}
 		});
+
+		return null;
 	}
 }
 
