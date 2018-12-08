@@ -37,7 +37,13 @@ class Scales {
 	}
 
 	getScale(scaleName) {
-		this.scales.forEach(function)
+		this.scales.forEach(function(scale) {
+			if (scale.isKeyName(scaleName)) {
+				return scale;
+			}
+		});
+
+		return null;
 	}
 }
 
