@@ -6,10 +6,15 @@
 
 class Model {
 	constructor() {
+		var c = document.getElementById("circle");
+		var gc = c.getContext("2d");
+
 		//objects
-		this.Keyboard = new Keyboard();
-		// this.Scale = new Scale();
-		// this.Circle = new Circle();
+		this.keyboard = new Keyboard();
+		this.scale = new Scale();
+		this.circle = new Circle();
+
+		this.circle.draw(gc, 300);
 	}
 
 	clickedCircle(scaleName) {
