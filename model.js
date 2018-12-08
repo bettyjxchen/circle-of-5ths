@@ -15,6 +15,9 @@ class Model {
 		this.circle = new Circle();
 
 		this.circle.draw(gc, 300);
+		this.isIn()
+
+		this.keyboard.draw(gc);
 	}
 
 	clickedCircle(scaleName) {
@@ -22,6 +25,7 @@ class Model {
 	}
 
 	isIn(x, y, c) {
+		this.keyboard.clickAll();
 		
 	}
 }

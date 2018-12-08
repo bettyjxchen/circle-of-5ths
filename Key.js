@@ -43,6 +43,10 @@ class Key {
 		&& y >= this.botY && Y <= this.botY+botH));
 	}
 
+	setClicked(clicked) {
+		this.isClicked = clicked
+	}
+
 	// Public draw call
 	draw(gc) {
 		this.drawFill(gc);

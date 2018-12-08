@@ -93,12 +93,27 @@
       // //onhover keyboard
       // document.getElementById("keyboard").addEventListener("mouseover", hoverKeyboard);
     
+    function playNote2() {
+        // create web audio api context
+        var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        // create Oscillator node
+        var oscillator = audioCtx.createOscillator();
+
+        oscillator.type = 'square';
+        oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
+        oscillator.connect(audioCtx.destination);
+        oscillator.start();
+
+    }
+
     window.onload = function () {
         //create Model
         this.model = new Model();
         
         addEventListeners()
         playMelody()
+        // playNote2()
     }
 
   </script>
@@ -169,7 +184,7 @@
         <!-- canvas -->
         <div class="row">
             <!-- canvas area -->
-            <canvas id="circle" align="center" style="background: url('Circle.jpg'); background-size: 100% 100%; width:600px; height: 600px; margin-left: 20%; margin-right: 20%">
+            <canvas id="circle" align="center" width="600px" height= "600px" style="background: url('Circle.jpg'); background-size: 100% 100%; margin-left: 20%; margin-right: 20%">
             </canvas>
 
             <canvas id="keyboard" align="center">

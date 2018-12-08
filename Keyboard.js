@@ -41,6 +41,12 @@ class Keyboard {
 		});
 	}
 
+	clickAll() {
+		this.keys.forEach(function(key) {
+			key.setClicked(true);
+		});
+	}
+
 	play(note) {
 
 	}
