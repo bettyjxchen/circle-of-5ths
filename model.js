@@ -18,6 +18,10 @@ class Model {
 		//create graphics context
 		var k = document.getElementById("keyboard");
 		this.gc_k = k.getContext("2d");
+		
+		// create web audio api context
+		this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
 
 		//objects
 		this.scales = new Scales();
@@ -39,5 +43,17 @@ class Model {
 			this.keyboard.clickKeys(notes)
 			this.keyboard.draw(this.gc_k)
 		}
+	}
+
+	playNote(event) {
+		// create Oscillator node
+		var oscillator = this.audioCtx.createOscillator();
+
+		var x = event.offsetX;
+		var y = event.offsetY;
+		oscillator.type = 'square';
+		oscillator.frequency.setValueAtTime(this.keyboard.playNote(noteName), this.audioCtx.currentTime); // value in hertz
+		oscillator.connect(this.audioCtx.destination);
+		oscillator.start();
 	}
 }

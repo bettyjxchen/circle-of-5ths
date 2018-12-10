@@ -27,16 +27,28 @@ class Key {
 		this.isHovered = false;
 
 		//upper box portion of the key
-		this.topX = topX; //topleft
-		this.topY = topY; //topleft
+		this.topX = topX+1; //topleft
+		this.topY = topY+1; //topleft
 		this.topW = topW; //width
 		this.topH = topH; //height
 
 		//lower box portion of the key (all 0 if black key)
-		this.botX = botX; //topleft
-		this.botY = botY; //topleft
+		this.botX = botX+1; //topleft
+		this.botY = botY+1; //topleft
 		this.botW = botW; //width
 		this.botH = botH; //height
+	}
+
+	// Pick correlation
+	isInside(x, y) {
+		return
+		// If in top box
+		((x >= this.topX && x <= this.topX+this.topW
+		&& y >= this.topY && y <= this.topY+this.topH)
+
+		// If in bot box
+		|| (x >= this.botX && x <= this.botX+botW
+		&& y >= this.botY && Y <= this.botY+botH));
 	}
 
 	//set key to clicked

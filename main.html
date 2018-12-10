@@ -22,12 +22,13 @@
 
     window.onload = function () {
         this.model = new Model();
+        document.getElementById("keyboard").addEventListener("click", this.model.playNote(event));
     }
 
   </script>
 </head>
 
-<body style="margin: 0px">
+<body style="margin: 0px padding:0px">
   <div style="padding: 20px; font-family: sans-serif">
     
     <!-- container -->
@@ -88,19 +89,14 @@
                 </div>
             </div>
         </div>
-    
-        <!-- canvas -->
-        <div class="row">
-            <!-- canvas area -->
-            <canvas id="circle" class="mb-3" align="center" width="600px" height= "600px" style="background: url('Circle.jpg'); background-size: 100% 100%; margin-left: 20%; margin-right: 20%">
-            </canvas>
-
-            <canvas id="keyboard" align="center" style="margin-left: 28%; margin-right: 20%" width="1200px" height="120px">
-            </canvas>
-        </div>
     </div>
+  </div>
+<!-- canvas -->
+<canvas id="circle" class="mb-3" align="center" width="600px" height= "600px" style="background: url('Circle.jpg'); background-size: 100% 100%; margin-left: 20%; margin-right: 20%"></canvas>
 
-  <script src="webspeech.js"></script>
+<canvas id="keyboard" align="center" style="margin:0px" width="1220px" height="107px"></canvas>
+
+<script src="webspeech.js"></script>
 </body>
 
 </html>
