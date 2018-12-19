@@ -22,11 +22,12 @@ class Model {
 		// create web audio api context
 		this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-
 		//objects
 		this.scales = new Scales();
 		this.keyboard = new Keyboard();
 		this.keyboard.draw(this.gc_k);
+
+		//this.song = new Song();
 	}
 
 	//shows scale on keyboard
@@ -40,20 +41,61 @@ class Model {
 			final_span.innerHTML = "Not a valid scale."
 		} else {
 			//clicks keys in notes
-			this.keyboard.clickKeys(notes)
+			this.keyboard.showScaleKeys(notes)
 			this.keyboard.draw(this.gc_k)
 		}
 	}
 
-	playNote(event) {
-		// create Oscillator node
-		var oscillator = this.audioCtx.createOscillator();
+	clickedKeyboard(event) {
+		// Pick a key
+		var key = this.keyboard.pickNote(event);
+		if (key == null) {
+			return;
+		}
 
-		var x = event.offsetX;
-		var y = event.offsetY;
-		oscillator.type = 'square';
-		oscillator.frequency.setValueAtTime(this.keyboard.playNote(noteName), this.audioCtx.currentTime); // value in hertz
+		// Found a key
+		this.playNote(key, 0, 1);
+	}
+
+	// Play a pressed note
+	playNote(key, startDelay, stopDelay) {
+		key.setClicked(true);
+		this.keyboard.draw(this.gc_k);
+
+		// Play sound
+		var noteFreq = key.getFrequency();
+
+		var oscillator = this.audioCtx.createOscillator();
+		oscillator.type = "triangle";
+		oscillator.frequency.setValueAtTime(noteFreq, this.audioCtx.currentTime + startDelay); // value in hertz
 		oscillator.connect(this.audioCtx.destination);
 		oscillator.start();
+		oscillator.stop(this.audioCtx.currentTime + stopDelay); // Stop 1 second
+
+		// Sound ended
+		var gc = this.gc_k;
+		var keyboard = this.keyboard;
+		oscillator.onended = function() {
+			key.setClicked(false);
+			keyboard.draw(gc);
+		}
 	}
+
+	/*
+	// Play a song
+	playSong() {
+		var elapsed = 0;
+		for (measure in this.song.measures) {
+			for (note in this.song.measures.notes) {
+				var name = note.getName;
+				var start = note.getStartRatio;
+				var duration = note.getDurationRatio;
+				findKey(note.getName)
+			}
+
+			// Next measure begins after this one ends
+			elapsed += measure.duration;
+		}
+	}
+	*/
 }

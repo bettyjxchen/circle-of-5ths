@@ -18,11 +18,20 @@
   <script src="CirclePanel.js"></script>
   <script src="Circle.js"></script>
   <script src="Model.js"></script>
+  <script src="Song.js"></script>
   <script type="text/javascript">
 
     window.onload = function () {
         this.model = new Model();
-        document.getElementById("keyboard").addEventListener("click", this.model.playNote(event));
+        //this.model.playSong();
+
+        //document.getElementById("keyboard").addEventListener("onmousedown", this.model.playNote(event));
+        document.getElementById("keyboard").addEventListener("click", function() {
+          model.clickedKeyboard(event);
+        })
+        // document.getElementById("keyboard").addEventListener("click", function() {
+        //   document.getElementById("info_start").innerHTML = "Hello World";
+        // });
     }
 
   </script>
@@ -94,7 +103,10 @@
 <!-- canvas -->
 <canvas id="circle" class="mb-3" align="center" width="600px" height= "600px" style="background: url('Circle.jpg'); background-size: 100% 100%; margin-left: 20%; margin-right: 20%"></canvas>
 
-<canvas id="keyboard" align="center" style="margin:0px" width="1220px" height="107px"></canvas>
+</div>
+</div>
+
+<canvas id="keyboard" align="center" style="margin-left: 160px" width="1220px" height="107px"></canvas>
 
 <script src="webspeech.js"></script>
 </body>

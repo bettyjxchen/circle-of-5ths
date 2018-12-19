@@ -14,17 +14,20 @@
 */
 
 class Key {
-	constructor(letter, isBlackKey, frequency, 
+	constructor(letter, register, isBlackKey, frequency, 
 	topX, topY, topW, topH, botX, botY, botW, botH) {
 
 		//letter name
 		this.letter = letter;
+		this.register = register;
 		this.isBlackKey = isBlackKey;
 		this.frequency = frequency;
 
 		//draw statuses
 		this.isClicked = false;
 		this.isHovered = false;
+		this.isScaleMain = false;
+		this.isScalePart = false;
 
 		//upper box portion of the key
 		this.topX = topX+1; //topleft
@@ -40,20 +43,45 @@ class Key {
 	}
 
 	// Pick correlation
-	isInside(x, y) {
-		return
+	pickCorrelation(event) {
+		var x = event.offsetX;
+		var y = event.offsetY;
+
 		// If in top box
-		((x >= this.topX && x <= this.topX+this.topW
+		return ((x >= this.topX && x <= this.topX+this.topW
 		&& y >= this.topY && y <= this.topY+this.topH)
 
 		// If in bot box
-		|| (x >= this.botX && x <= this.botX+botW
-		&& y >= this.botY && Y <= this.botY+botH));
+		|| (x >= this.botX && x <= this.botX+this.botW
+		&& y >= this.botY && y <= this.botY+this.botH));
 	}
 
 	//set key to clicked
-	setClicked(clicked) {
-		this.isClicked = clicked
+	setClicked(bool) {
+		this.isClicked = bool;
+	}
+
+	setHovered(bool) {
+		this.isHovered = bool;
+	}
+
+	setIsScaleMain(bool) {
+		this.isScaleMain = bool;
+	}
+
+	setIsScalePart(bool) {
+		this.isScalePart = bool;
+	}
+
+	getFrequency() {
+		return this.frequency;
+	}
+
+	getLetter() {
+		return this.letter;
+	}
+	getRegister() {
+		return this.register;
 	}
 
 	//draw key
@@ -73,13 +101,27 @@ class Key {
 		gc.fillRect(this.topX, this.topY, this.topW, this.topH);
 		gc.fillRect(this.botX, this.botY, this.botW, this.botH);
 
+		// Black key light reflection
 		if (this.isBlackKey) {
 			gc.fillStyle = "#CCCCCC";
 			gc.fillRect(this.topX+this.topW-2, 0, 2, this.topY+this.topH-2);
 		}
 
-		if (this.isClicked) {
+		// Scale drawing
+		if (this.isScaleMain) {
+			gc.fillStyle = "rgba(255, 150, 0, .4"; // Red
+			gc.fillRect(this.topX, this.topY, this.topW, this.topH);
+			gc.fillRect(this.botX, this.botY, this.botW, this.botH);
+		}
+		else if (this.isScalePart) {
 			gc.fillStyle = "rgba(255, 255, 0, .4"; //Yellow
+			gc.fillRect(this.topX, this.topY, this.topW, this.topH);
+			gc.fillRect(this.botX, this.botY, this.botW, this.botH);
+		}
+
+		// Key is clicked
+		if (this.isClicked) {
+			gc.fillStyle = "rgba(255, 0, 0, .6"; // Red
 			gc.fillRect(this.topX, this.topY, this.topW, this.topH);
 			gc.fillRect(this.botX, this.botY, this.botW, this.botH);
 		}
@@ -89,9 +131,9 @@ class Key {
 	drawBorder(gc) {
 		gc.beginPath();
 
-		//color if hovered/nothovered
-		if (this.isHovered) gc.strokeStyle = "#F00"; //Red
-		else gc.strokeStyle = "#000"; //Black
+		//color if clicked/unclicked
+		//if (this.isClicked) gc.strokeStyle = "#F00"; // Red
+		gc.strokeStyle = "#000"; // Black
 
 		//draw upper portion of Key
 		gc.moveTo(this.topX, this.topY+this.topH);
